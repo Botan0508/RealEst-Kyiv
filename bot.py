@@ -7,7 +7,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 def main():
     # ВСТАВЬ СВОЙ ТОКЕН
-    app = ApplicationBuilder().token("ТВОЙ_ТОКЕН_БОТА").build()
+    mport os
+app = ApplicationBuilder().token(os.getenv("BOT_TOKEN")).build()
 
     app.add_handler(CommandHandler("start", start))
 
@@ -16,3 +17,4 @@ def main():
 
 if name == "main":
     main()
+

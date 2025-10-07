@@ -3,12 +3,12 @@ from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
 # Команда /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Привет! Я твой виртуальный менеджер по недвижимости 👋")
+    await update.message.reply_text("Привет! Я твой виртуальный менеджер по недвижимости!")
 
 def main():
     # ВСТАВЬ СВОЙ ТОКЕН
-    mport os
-app = ApplicationBuilder().token(os.getenv("BOT_TOKEN")).build()
+    import os
+    app = ApplicationBuilder().token(os.getenv("BOT_TOKEN")).build()
 
     app.add_handler(CommandHandler("start", start))
 
@@ -17,4 +17,5 @@ app = ApplicationBuilder().token(os.getenv("BOT_TOKEN")).build()
 
 if name == "main":
     main()
+
 

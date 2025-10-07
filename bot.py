@@ -13,8 +13,10 @@ def main():
     print("✅ Бот запущен и ожидает команды...")
     app.run_polling()
 
-if __name__ == "__main__":
+if name == "main":
     main()
+    
+
 
 
 

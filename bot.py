@@ -4,7 +4,7 @@ from flask import Flask
 import telebot
 
 # токен из переменной окружения (Render), если нет — fallback
-TOKEN = os.getenv("BOT_TOKEN", "YOUR_TOKEN")
+TOKEN = os.getenv("BOT_TOKEN")
 bot = telebot.TeleBot(TOKEN)
 
 app = Flask(name)
@@ -23,7 +23,8 @@ def run_flask():
 def run_bot():
     bot.infinity_polling()
 
-if name == "main":
+if __name__ == "__main__":
     t1 = threading.Thread(target=run_flask)
     t1.start()
     run_bot()
+

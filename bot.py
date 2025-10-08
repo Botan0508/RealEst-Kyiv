@@ -1,25 +1,20 @@
-from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+import telebot
 import os
+from flask import Flask
 
-# Команда /start
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Привет! Я твой виртуальный менеджер по недвижимости!")
+TOKEN = os.getenv("BOT_TOKEN")
+bot = telebot.TeleBot(TOKEN)
+app = Flask(name)
 
-def main():
-    token = os.getenv("BOT_TOKEN")
-    if not token:
-        
-        return
+@app.route('/')
+def home():
+    return "Bot is running!"
 
-    app = ApplicationBuilder().token(token).build()
-    app.add_handler(CommandHandler("start", start))
-    print("✅ Бот запущен и ожидает команды...")
-    app.run_polling()
+@bot.message_handler(commands=['start'])
+def start(message):
+    bot.reply_to(message, "Привет! Бот работает на Render 🚀")
 
-if __name__ == "__main__":
-    main()
-
-
-
-
+if name == "main":
+    import threading
+    threading.Thread(target=bot.polling, daemon=True).start()
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
